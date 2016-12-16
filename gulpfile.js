@@ -7,8 +7,8 @@ var clean = require('gulp-clean');
 var merge = require('merge-stream');
 var data = require('gulp-data');
 //templating
-var frontMatter = require('gulp-front-matter');
-var marked = require('gulp-marked');
+var frontMatter = require('gulp-front-matter'),
+    marked = require('gulp-marked');
 var handlebars = require('gulp-compile-handlebars');
 //other build and deploy
 var images = require('gulp-responsive-images');
