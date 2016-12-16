@@ -1,6 +1,3 @@
----
-foo: bar
----
 # hello world
 
 gudby crool world 
