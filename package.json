@@ -1,0 +1,19 @@
+{
+  "name": "static-scratch",
+  "version": "0.0.1",
+  "description": "simple static site demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timBrockman/static-scratch.git"
+  },
+  "author": "Tim Brockman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/timBrockman/static-scratch/issues"
+  },
+  "homepage": "https://github.com/timBrockman/static-scratch#readme"
+}
