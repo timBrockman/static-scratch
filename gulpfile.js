@@ -27,6 +27,7 @@ gulp.task('grind-pages', ()=>{
     }))
     .pipe(marked())
 //  .pipe(data((file)=>{console.log(file.page)}))  //sanity
+//  .pipe(data((file)=>{console.log(file.contents.toString())}))  //sanity
     .pipe(gulp.dest('dist/'));
 });
 function applyTemplates(src = 'templates/page.hbs'){
