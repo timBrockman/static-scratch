@@ -25,15 +25,20 @@ gulp.task('grind-pages', ()=>{
       remove:true
     }))
     .pipe(marked())
+    .pipe(data(applyTemplates(file)))
 //  .pipe(data((file)=>{console.log(file.page)}))  //sanity
 //  .pipe(data((file)=>{console.log(file.contents.toString())}))  //sanity
     .pipe(gulp.dest('dist/'));
 });
-function applyTemplates(src = 'templates/page.hbs'){
-
-}
+function applyTemplates(dataFile){
+  var options={
+    ignorePartials:true,
+    batch:['src/partials']
+  }
+};
 function collectPosts(){
   
-}
+};
 //responsive images
-
+gulp.task('process-squares',()=>{});
+gulp.task('process-banners',()=>{});
