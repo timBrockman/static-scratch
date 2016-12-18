@@ -27,6 +27,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-responsive-images": "0.0.3",
     "gulp-util": "^3.0.7",
-    "merge-stream": "^1.0.1"
+    "merge-stream": "^1.0.1",
+    "through2": "^2.0.3"
   }
 }

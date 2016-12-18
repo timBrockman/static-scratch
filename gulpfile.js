@@ -5,7 +5,8 @@ var gulp = require( 'gulp'),
   rename = require('gulp-rename'),
   clean = require('gulp-clean'),
   merge = require('merge-stream'),
-  data = require('gulp-data');
+  data = require('gulp-data'),
+  through = require('through2');
 //templating
 var frontMatter = require('gulp-front-matter'),
   marked = require('gulp-marked'),
@@ -31,10 +32,18 @@ gulp.task('grind-pages', ()=>{
     .pipe(gulp.dest('dist/'));
 });
 function applyTemplates(dataFile){
+  var templateData = {
+    content: dataFile.contents.toString(),
+    site: site,
+    page: dataFile.page
+  };  
   var options={
     ignorePartials:true,
-    batch:['src/partials']
-  }
+    batch:['./src/partials']
+  };
+  var templateUrl = '.src/templates/' + dataFile.page.template?dataFile.page.template:'default.hbs';
+
+  return gulp.src(templateUrl);
 };
 function collectPosts(){
   
