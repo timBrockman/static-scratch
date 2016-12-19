@@ -1,11 +1,9 @@
 'use strict'
 //general
 const gulp = require( 'gulp'),
-  gutil = require('gulp-util'),
   rename = require('gulp-rename'),
   clean = require('gulp-clean'),
-  merge = require('merge-stream'),
-  data = require('gulp-data'),
+  gulpData = require('gulp-data'),
   fs = require('fs'),
   through = require('through2');
 //templating
@@ -32,13 +30,13 @@ gulp.task('log', ()=>{
 //templating
 gulp.task('grind-pages', ()=>{
   return gulp.src('./src/content/pages/*.md')
-    .pipe(frontMatter({property:'page', remove:true}))
+    .pipe(frontMatter({property:'page', remove:true}))//works with gulp-data
     .pipe(marked())
     .pipe(logPath())
     .pipe(attatchSiteData())
-    .pipe(wrap(function (data) {
-      return fs.readFileSync('./src/templates/' + (!data.file.page.template?'default.liquid':data.file.page.template)).toString()
-    }, data, {engine: 'liquid'}))
+    .pipe(wrap(function (gulpData) { //data gulp-data
+      return fs.readFileSync('./src/templates/' + (!gulpData.file.page.template?'default.liquid':gulpData.file.page.template)).toString()
+    }, null, {engine: 'liquid'}))
     .on('error',(err)=>{console.log(err)})
     .pipe(logPath())
 
