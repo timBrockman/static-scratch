@@ -1,5 +1,6 @@
 ---
 foo: bar
+template: default.liquid
 ---
 # hello world
 
