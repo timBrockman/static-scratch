@@ -37,7 +37,7 @@ gulp.task('grind-pages', ()=>{
     .pipe(logPath())
     .pipe(attatchSiteData())
     .pipe(wrap(function (data) {
-      return fs.readFileSync('./src/template/' + (!data.file.page.template?'default.liquid':data.file.page.template)).toString()
+      return fs.readFileSync('./src/templates/' + (!data.file.page.template?'default.liquid':data.file.page.template)).toString()
     }, data, {engine: 'liquid'}))
     .on('error',(err)=>{console.log(err)})
     .pipe(logPath())
