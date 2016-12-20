@@ -1,4 +1,7 @@
 'use strict'
+/*
+required plugins and handles
+*/
 //general
 const gulp = require( 'gulp'),
   rename = require('gulp-rename'),
@@ -10,12 +13,19 @@ const gulp = require( 'gulp'),
 const frontMatter = require('gulp-front-matter'),
   marked = require('gulp-marked'),
   wrap = require('gulp-wrap');
+
 //other build and deploy
 const images = require('gulp-responsive-images'),
   ghpages = require('gulp-gh-pages');
+
 //site info
 var site = require('./site.json');
-site.time = new Date();
+    site.time = new Date();
+
+
+/*
+  tasks
+*/
 
 // clean
 gulp.task('clean', ()=>{
@@ -39,13 +49,24 @@ gulp.task('grind-pages', ()=>{
     }, null, {engine: 'liquid'}))
     .on('error',(err)=>{console.log(err)})
     .pipe(logPath())
-
-//    .pipe(applyTemplate())
-//      .on('error', (error)=>{console.log(error)})
-//  .pipe(data((file)=>{console.log(file)}))  //sanity
-//  .pipe(data((file)=>{console.log(file.contents.toString())}))  //sanity
     .pipe(gulp.dest('dist/'));
 });
+//responsive images
+gulp.task('process-squares',()=>{});
+gulp.task('process-banners',()=>{});
+
+//deploy
+gulp.task('deploy', ()=>{
+  return gulp.src('./dist/**/*')
+  .pipe(ghpages);
+});
+
+//default
+gulp.task('default',[]);
+
+/* 
+helper functions 
+*/
 function logPath(label = 'file path: '){
     return through.obj((file, enc, cb)=>{
       console.log(file.page);
@@ -64,6 +85,3 @@ function attatchSiteData(){
 function collectPosts(){
   
 };
-//responsive images
-gulp.task('process-squares',()=>{});
-gulp.task('process-banners',()=>{});
