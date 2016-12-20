@@ -58,7 +58,7 @@ gulp.task('deploy', ()=>{
 });
 
 //default
-gulp.task('default',['deploy'],()=>{});
+gulp.task('default',gulp.series('clean', 'grind-pages', 'deploy'));
 
 /* 
 helper functions 
