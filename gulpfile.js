@@ -58,7 +58,7 @@ gulp.task('deploy', ()=>{
 });
 
 //default
-//gulp.task('default',[]);
+gulp.task('default',()=>{});
 
 /* 
 helper functions 
