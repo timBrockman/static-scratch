@@ -1,3 +1,2 @@
 prose:
-  rooturl: '/src/'
-  siteurl: ''
+  rooturl: "./src/"
