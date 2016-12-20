@@ -35,7 +35,7 @@ gulp.task('clean', ()=>{
 });
 
 //templating
-gulp.task('grind-pages', ()=>{
+gulp.task('grind-pages', ['clean'], ()=>{
   return gulp.src('./src/content/pages/*.md')
     .pipe(frontMatter({property:'page', remove:true}))//works with gulp-data
     .pipe(marked())
@@ -52,14 +52,19 @@ gulp.task('grind-pages', ()=>{
 gulp.task('process-squares',()=>{});
 gulp.task('process-banners',()=>{});
 
-//deploy 
+gulp.task('build', ['grind-pages'],()=>{});
+
+//deploy cant wait for gulp 4
 gulp.task('deploy', ()=>{
+  return childProcess.execFile('git subtree push --prefix dist origin gh-pages');
+});
+gulp.task('deploy-built', ['build'],()=>{
   return childProcess.execFile('git subtree push --prefix dist origin gh-pages');
 });
 
 //default
-gulp.task('default',gulp.series('clean', 'grind-pages', 'deploy'));
-
+//for gulp 4 gulp.task('default',gulp.series('clean', 'build', 'deploy'));
+gulp.task('default',['clean','build','deploy-built']);
 /* 
 helper functions 
 */
