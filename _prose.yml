@@ -1,2 +1,2 @@
 prose:
-  baseurl: "../src/content/"
+  rooturl: 'src'
