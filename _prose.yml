@@ -1,0 +1,4 @@
+prose:
+  rooturl: './src/content/'
+  siteurl: ''
+  
