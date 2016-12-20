@@ -8,6 +8,7 @@ const gulp = require( 'gulp'),
   clean = require('gulp-clean'),
   gulpData = require('gulp-data'),
   fs = require('fs'),
+  childProcess = require('child_process'),
   through = require('through2');
 //templating
 const frontMatter = require('gulp-front-matter'),
@@ -51,10 +52,9 @@ gulp.task('grind-pages', ()=>{
 gulp.task('process-squares',()=>{});
 gulp.task('process-banners',()=>{});
 
-//deploy
+//deploy 
 gulp.task('deploy', ()=>{
-  return gulp.src('./dist/**/*')
-  .pipe(ghpages());
+  return childProcess.execFile('git subtree push --prefix dist origin gh-pages');
 });
 
 //default
