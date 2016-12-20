@@ -52,7 +52,7 @@ gulp.task('grind-pages', ['clean'], ()=>{
 gulp.task('process-squares',()=>{});
 gulp.task('process-banners',()=>{});
 
-gulp.task('build', ['grind-pages'],()=>{});
+gulp.task('build', ['grind-pages'],(cb)=>{cb();});
 
 //deploy cant wait for gulp 4
 gulp.task('deploy', ()=>{
