@@ -32,11 +32,7 @@ gulp.task('clean', ()=>{
   return gulp.src('./dist/')
     .pipe(clean());
 });
-gulp.task('log', ()=>{
-  gulp.src("./src/content/**.md")
-    .pipe(marked())
-    .pipe(gulp.dest("./foo"));
-})
+
 //templating
 gulp.task('grind-pages', ()=>{
   return gulp.src('./src/content/pages/*.md')
@@ -58,11 +54,11 @@ gulp.task('process-banners',()=>{});
 //deploy
 gulp.task('deploy', ()=>{
   return gulp.src('./dist/**/*')
-  .pipe(ghpages);
+  .pipe(ghpages());
 });
 
 //default
-gulp.task('default',[]);
+//gulp.task('default',[]);
 
 /* 
 helper functions 
