@@ -24,6 +24,8 @@ install:
 script:
 - gulp
 after_script:
-  - git subtree push -f --prefix dist origin gh-pages
+  - current_time=$(date "+%Y.%m.%d-%H.%M.%S")
+  - git commit -a -m "post update $current_time"
+  - git subtree push --prefix dist origin gh-pages
 notifications:
   email: false
