@@ -8,6 +8,7 @@ const gulp = require( 'gulp'),
   clean = require('gulp-clean'),
   gulpData = require('gulp-data'),
   fs = require('fs'),
+  runSequence = require('run-sequence'),
   childProcess = require('child_process'),
   through = require('through2');
 //templating
@@ -35,7 +36,7 @@ gulp.task('clean', ()=>{
 });
 
 //templating
-gulp.task('grind-pages', ['clean'], ()=>{
+gulp.task('grind-pages', ()=>{
   return gulp.src('./src/content/pages/*.md')
     .pipe(frontMatter({property:'page', remove:true}))//works with gulp-data
     .pipe(marked())
@@ -52,19 +53,18 @@ gulp.task('grind-pages', ['clean'], ()=>{
 gulp.task('process-squares',()=>{});
 gulp.task('process-banners',()=>{});
 
-gulp.task('build', ['grind-pages'],(cb)=>{cb();});
+//gulp.task('build', ['grind-pages'],()=>{});
 
 //deploy cant wait for gulp 4
 gulp.task('deploy', ()=>{
   return childProcess.execFile('git subtree push --prefix dist origin gh-pages');
 });
-gulp.task('deploy-built', ['build'],()=>{
-  return childProcess.execFile('git subtree push --prefix dist origin gh-pages');
-});
 
 //default
-//for gulp 4 gulp.task('default',gulp.series('clean', 'build', 'deploy'));
-gulp.task('default',['clean','build','deploy-built']);
+//gulp.task('default', gulp.series('clean', 'build', 'deploy'));
+gulp.task('default', (cb)=>{
+  runSequence('clean','grind-pages','deploy', cb);
+});
 /* 
 helper functions 
 */
