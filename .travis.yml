@@ -24,6 +24,6 @@ install:
 script:
 - gulp
 after_script:
-  - git subtree push --prefix dist origin gh-pages
+  - git subtree push -f --prefix dist origin gh-pages
 notifications:
   email: false
