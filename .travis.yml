@@ -7,10 +7,6 @@ node_js:
 install:
 - npm install -g gulp
 - npm install
-before_script:
-- git remote set-url origin git@github.com:timBrockman/static-scratch.git
-- git config --global user.email "tim@timbrockman.com"
-- git config --global user.name "Travis-CI"
 script:
 - gulp
 env:
@@ -18,7 +14,15 @@ env:
   - ENCRYPTION: "5612014fe239"
   - COMMIT_AUTHOR_EMAIL: "tim@timbrockman.com"
 before_install:
-- openssl aes-256-cbc -K $encrypted_5612014fe239_key -iv $encrypted_5612014fe239_iv
-  -in deploy_key.enc -out deploy_key -d
+  - openssl aes-256-cbc -K $encrypted_5612014fe239_key -iv $encrypted_5612014fe239_iv
+  -in deploy_key.enc -out ~/.ssh/deploy_key -d
+  - chmod u=rw,og= ~/.ssh/deploy_key
+  - echo "Host github.com" >> ~/.ssh/config
+  - echo "  IdentityFile ~/.ssh/deploy_key" >> ~/.ssh/config
+  - git --version
+  - git remote set-url origin "git@github.com:timBrockman/static-scratch.git"
+  - git config --global user.email "tim@timbrockman.com"
+  - git config --global user.name "Travis-CI"
+
 notifications:
   email: false
