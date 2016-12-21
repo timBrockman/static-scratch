@@ -19,14 +19,14 @@ before_install:
   - git config --global user.email "tim@timbrockman.com"
   - git config --global user.name "Travis-CI"
 install:
-- npm install -g gulp
-- npm install
+  - npm install -g gulp
+  - npm install
 script:
-- gulp
+  - gulp
 after_script:
-  - git pull origin gh-pages --no-edit
+  - git pull --commit --no-edit origin gh-pages
   - current_time=$(date "+%Y.%m.%d-%H.%M.%S")
-  - git commit -a -m "post update $current_time"
+  - git commit -a -m "Travis updated this at $current_time"
   - git subtree push --prefix dist origin gh-pages
 notifications:
   email: false
