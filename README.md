@@ -4,4 +4,4 @@ This is a simple gulp static site build for liquid (or other) templates. It will
 
 Github has a good enough editor for markdown with preview built in. If Travis will gulp and commit to pages, then everything should be in order.
 
-todo: file a prose.io issue for file saves/commits not actually getting commited
+todo: file a prose.io issue for file saves/commits not actually getting committed

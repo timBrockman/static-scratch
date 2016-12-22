@@ -22,7 +22,7 @@ install:
   - npm install -g gulp
   - npm install
 script:
-  - gulp
+  - gulp pass
 after_script:
   - git pull --commit --no-edit origin gh-pages
   - current_time=$(date "+%Y.%m.%d-%H.%M.%S")

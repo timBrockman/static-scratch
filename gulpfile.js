@@ -1,3 +1,42 @@
+/*
+----------
+separate build/deploy processes (local machine & travis)
+this gulpfile should have tasks to:
+  - locally: If travis is set up, a build and gh-pages deploy will be triggered on master push. This is primarily for development.
+    1. clean the dist folder
+    2. run tests
+      a. run test-build
+      b. check for .dist/test.html
+      c. verify it has sample elements and data
+      d. remove .dist/test.html
+    3. compiles site indexes
+      a. parse the front matter from all src/content markdown files
+      b. creates an dated archive index if archive: true (for blog/news)
+      c. attaches tags, categories, etc. to site data
+      d. outputs a .json file to dist
+    4. creates pages and posts
+      a. parse and strip front matter 
+      b. convert markdown files to html
+      c. applies template from front matter template variable
+    5. deploy
+      a. git add .
+      b. git commit -m 'publish $timestamp'
+      c. git push subtree to gh-pages
+
+    
+  - remotely 
+    0. create an ~/output folder with liberal permissions in travis 
+    1. same as local 2 (except saved to ~/output)
+    2. same as local 3 
+    3. run tests on deployment staging (output)
+      a. run travis-test-build
+      b. that output exsists
+      c. that test files are as expected
+      d. remove test files
+      e. check for removal
+    0. travis does deploy cd output, git init, etc. ...
+----------
+ */
 'use strict'
 /*
 required plugins and handles
@@ -11,6 +50,11 @@ const gulp = require( 'gulp'),
   runSequence = require('run-sequence'),
   childProcess = require('child_process'),
   through = require('through2');
+//testing (eventually make yeoman)
+const mocha = require('gulp-mocha'),
+  istanbul = require('gulp-istanbul'),
+  plumber = require('gulp-plumber'),
+  coveralls = require('gulp-coveralls'),
 //templating
 const frontMatter = require('gulp-front-matter'),
   marked = require('gulp-marked'),
@@ -28,6 +72,8 @@ var site = require('./site.json');
 /*
   tasks
 */
+// pass
+gulp.task('pass',()=>{});
 
 // clean
 gulp.task('clean', ()=>{
