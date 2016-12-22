@@ -54,7 +54,7 @@ const gulp = require( 'gulp'),
 const mocha = require('gulp-mocha'),
   istanbul = require('gulp-istanbul'),
   plumber = require('gulp-plumber'),
-  coveralls = require('gulp-coveralls'),
+  coveralls = require('gulp-coveralls');
 //templating
 const frontMatter = require('gulp-front-matter'),
   marked = require('gulp-marked'),
