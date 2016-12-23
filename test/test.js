@@ -1,5 +1,3 @@
-const should = require('chai').should();
+const chai = require('chai');
+const expect = chai.expect;
 
-describe("This test suite", ()=>{
-  
-});
