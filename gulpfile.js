@@ -103,7 +103,7 @@ gulp.task('process-banners',()=>{});
 
 //deploy cant wait for gulp 4
 gulp.task('deploy', ()=>{
-  return childProcess.execFile('git subtree push --prefix dist origin gh-pages');
+  return childProcess.exec('git subtree push --prefix dist origin gh-pages');
 });
 
 //default
