@@ -80,6 +80,13 @@ gulp.task('clean', ()=>{
   return gulp.src('./dist/')
     .pipe(clean());
 });
+//catalog
+// creates indexes by tag and category and attaches to site object
+gulp.task('catalog', ()+>{
+  return gulp.src('./src/content/*.md')
+    .pipe(frontMatter({property:'page', remove:false}))
+    .pipe(addUrl(site));
+});
 
 //templating
 gulp.task('grind-pages', ()=>{
@@ -129,6 +136,26 @@ function attatchSiteData(){
     });
 }
 //indexing
-function collectPosts(){
+function addUrl(siteObj, extension = ''){
   
-};
+  return through.obj((file, enc, cb)=>{
+    var pageUrl = file.path.match(/([a-zA-Z0-9_-]+)\.md/)[1];
+    pageUrl = pageUrl + extension;
+    //refactor the following at some point
+    siteObj.tags = siteObj.hasOwnProperty('tags')?siteObj.tags:{};
+    if(file.page.hasOwnProperty('tags')){
+      file.page.tags.forEach((tag)=>{
+        siteObj.tags[tag] = siteObj.tags.hasOwnProperty(tag)?siteObj.tags[tag]:[];
+        siteObj.tags[tag].push(pageUrl);
+      });
+    }
+    siteObj.categories = siteObj.hasOwnProperty('categories')?siteObj.categories:{};
+    if(file.page.hasOwnProperty('categories')){
+      file.page.categories.forEach((category)=>{
+        siteObj.categories[category] = siteObj.categories.hasOwnProperty(category)?siteObj.categories[category]:[];
+        siteObj.categories[category].push(pageUrl);
+      });
+    }
+    cb(null, file);
+  });
+}
