@@ -94,7 +94,7 @@ gulp.task('grind-pages', ()=>{
     .pipe(frontMatter({property:'page', remove:true}))//works with gulp-data
     .pipe(marked())
     .pipe(logPath())
-    .pipe(attatchSiteData())
+    .pipe(attachSiteData())
     .pipe(wrap((gulpData)=>{ //data gulp-data
       return fs.readFileSync('./src/templates/' + (!gulpData.file.page.template?'default.liquid':gulpData.file.page.template)).toString()
     }, null, {engine: 'liquid'}))
@@ -129,7 +129,7 @@ function logPath(label = 'file path: '){
       cb(null, file);
     });
 }
-function attatchSiteData(){
+function attachSiteData(){
     return through.obj((file, enc, cb)=>{
         file.site = site;
         cb(null,file);
