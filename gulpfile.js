@@ -88,7 +88,7 @@ gulp.task('grind-pages', ()=>{
     .pipe(marked())
     .pipe(logPath())
     .pipe(attatchSiteData())
-    .pipe(wrap(function (gulpData) { //data gulp-data
+    .pipe(wrap((gulpData)=>{ //data gulp-data
       return fs.readFileSync('./src/templates/' + (!gulpData.file.page.template?'default.liquid':gulpData.file.page.template)).toString()
     }, null, {engine: 'liquid'}))
     .on('error',(err)=>{console.log(err)})
