@@ -20,6 +20,7 @@ script:
   - npm run simple
 
 after_success:
+  - pwd
   - cd ~ && mkdir ~/gh-push
   - git clone https://github.com/timBrockman/static-scratch.git ~/gh-push
   - cd gh-push
