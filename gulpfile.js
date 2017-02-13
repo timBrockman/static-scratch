@@ -80,6 +80,13 @@ gulp.task('clean', ()=>{
   return gulp.src('./dist/')
     .pipe(clean());
 });
+//catalog
+// creates indexes by tag and category and attaches to site object
+gulp.task('catalog', ()+>{
+  return gulp.src('./src/content/*.md')
+    .pipe(frontMatter({property:'page', remove:false}))
+    .pipe(addUrl(site));
+});
 
 //templating
 gulp.task('grind-pages', ()=>{
@@ -87,8 +94,8 @@ gulp.task('grind-pages', ()=>{
     .pipe(frontMatter({property:'page', remove:true}))//works with gulp-data
     .pipe(marked())
     .pipe(logPath())
-    .pipe(attatchSiteData())
-    .pipe(wrap(function (gulpData) { //data gulp-data
+    .pipe(attachSiteData())
+    .pipe(wrap((gulpData)=>{ //data gulp-data
       return fs.readFileSync('./src/templates/' + (!gulpData.file.page.template?'default.liquid':gulpData.file.page.template)).toString()
     }, null, {engine: 'liquid'}))
     .on('error',(err)=>{console.log(err)})
@@ -103,7 +110,7 @@ gulp.task('process-banners',()=>{});
 
 //deploy cant wait for gulp 4
 gulp.task('deploy', ()=>{
-  return childProcess.execFile('git subtree push --prefix dist origin gh-pages');
+  return childProcess.exec('git subtree push --prefix dist origin gh-pages');
 });
 
 //default
@@ -122,13 +129,33 @@ function logPath(label = 'file path: '){
       cb(null, file);
     });
 }
-function attatchSiteData(){
+function attachSiteData(){
     return through.obj((file, enc, cb)=>{
         file.site = site;
         cb(null,file);
     });
 }
 //indexing
-function collectPosts(){
+function addUrl(siteObj, extension = ''){
   
-};
+  return through.obj((file, enc, cb)=>{
+    var pageUrl = file.path.match(/([a-zA-Z0-9_-]+)\.md/)[1];
+    pageUrl = pageUrl + extension;
+    //refactor the following at some point
+    siteObj.tags = siteObj.hasOwnProperty('tags')?siteObj.tags:{};
+    if(file.page.hasOwnProperty('tags')){
+      file.page.tags.forEach((tag)=>{
+        siteObj.tags[tag] = siteObj.tags.hasOwnProperty(tag)?siteObj.tags[tag]:[];
+        siteObj.tags[tag].push(pageUrl);
+      });
+    }
+    siteObj.categories = siteObj.hasOwnProperty('categories')?siteObj.categories:{};
+    if(file.page.hasOwnProperty('categories')){
+      file.page.categories.forEach((category)=>{
+        siteObj.categories[category] = siteObj.categories.hasOwnProperty(category)?siteObj.categories[category]:[];
+        siteObj.categories[category].push(pageUrl);
+      });
+    }
+    cb(null, file);
+  });
+}
