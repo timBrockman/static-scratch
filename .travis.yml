@@ -25,6 +25,7 @@ after_success:
   - cd gh-push
   - git checkout gh-pages
   - rm -rf ~/gh-push/**/*
+  - ls ~/
   - cp ~/static-scratch/dist/* ~/gh-push/
   - current_time=$(date "+%Y.%m.%d-%H.%M.%S")
   - git add .
