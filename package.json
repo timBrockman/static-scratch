@@ -4,7 +4,8 @@
   "description": "simple static site demo",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "simple":"rm -rf ./dist/* && cp ./src/index.html ./dist/"
   },
   "repository": {
     "type": "git",

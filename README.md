@@ -1,7 +1,12 @@
 # Static Scratch 
 
-This is a simple gulp static site build for liquid (or other) templates. It will be part of a quick demo for a larger proof of concept thing.
+## refactoring (todo)
+  1. strip out or ignore the cruft
+  2. create a simplified build (maybe a just an npm index.html file copy)
+  3. create a simple placeholder test
+  4. create a deploy for gh-pages 
+  5. travis build test deploy 
 
-Github has a good enough editor for markdown with preview built in. If Travis will gulp and commit to pages, then everything should be in order.
-
-todo: file a prose.io issue for file saves/commits not actually getting committed
+## next
+hbs templates
+gulp build
