@@ -29,7 +29,7 @@ after_success:
   - ls ~/gh-push/
   - cp ~/build/timBrockman/static-scratch/dist/* ~/gh-push/
   - current_time=$(date "+%Y.%m.%d-%H.%M.%S")
-  - git add .
+  - git add -A .
   - git commit -m "Travis updated this at $current_time"
   - git remote set-url origin "git@github.com:timBrockman/static-scratch.git"
   - git push origin gh-pages
