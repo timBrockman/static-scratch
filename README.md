@@ -1,11 +1,20 @@
 # Static Scratch 
 
-## refactoring (todo)
-  1. strip out or ignore the cruft
-  2. create a simplified build (maybe a just an npm index.html file copy)
-  3. create a simple placeholder test
-  4. create a deploy for gh-pages 
-  5. travis build test deploy 
+This is a quick project to experiment with non-jekyll GitHub static site builds.
+
+  - gulp
+  - handlebars
+  - chai (testing)
+  - bash (deploys to gh-pages)
+  - travis-ci (builds, tests, on success deploys to gh-pages)
+
+## refactoring (done)
+  - simple build (cp random index.html)
+  - deploy to GitHub process works
+
+## todo
+  - refine travis-ci After_success deploy to bash script
+  - consider good way to pass in env variables for future yo
 
 ## next
 hbs templates
