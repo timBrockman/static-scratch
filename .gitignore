@@ -2,3 +2,4 @@ node_modules/
 src/images/
 .vscode/  
 .publish/
+.DS_Store

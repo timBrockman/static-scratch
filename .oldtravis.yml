@@ -1,3 +1,6 @@
+branches:
+  only:
+  - master
 language: node_js
 node_js:
 - node
@@ -15,15 +18,15 @@ before_install:
   - git remote set-url origin "git@github.com:timBrockman/static-scratch.git"
   - git config --global user.email "tim@timbrockman.com"
   - git config --global user.name "Travis-CI"
-
+install:
+  - npm install -g gulp
+  - npm install
 script:
-  - npm run simple
-
-after_success:
+  - gulp pass
+after_script:
+  - git pull --commit --no-edit origin gh-pages
   - current_time=$(date "+%Y.%m.%d-%H.%M.%S")
-  - git add .
-  - git commit -m "Travis updated this at $current_time"
+  - git commit -a -m "Travis updated this at $current_time"
   - git subtree push --prefix dist origin gh-pages
-
 notifications:
   email: false
