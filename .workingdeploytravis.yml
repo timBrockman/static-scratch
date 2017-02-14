@@ -1,0 +1,38 @@
+language: node_js
+node_js:
+- node
+env:
+  global:
+  - CRYPT: "5612014fe239"
+  - COMMIT_AUTHOR_EMAIL: "tim@timbrockman.com"
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_${CRYPT}_key -iv $encrypted_${CRYPT}_iv -in gh-pages-key.enc -out ~/.ssh/gh-pages-key -d
+  - chmod u=rw,og= ~/.ssh/gh-pages-key
+  - echo "Host github.com" >> ~/.ssh/config
+  - echo "  IdentityFile ~/.ssh/gh-pages-key" >> ~/.ssh/config
+  - git --version
+  - git remote set-url origin "git@github.com:timBrockman/static-scratch.git"
+  - git config --global user.email "tim@timbrockman.com"
+  - git config --global user.name "Travis-CI"
+
+script:
+  - npm run simple
+
+after_success:
+  - pwd
+  - cd ~ && mkdir ~/gh-push
+  - git clone https://github.com/timBrockman/static-scratch.git ~/gh-push
+  - cd gh-push
+  - git checkout gh-pages
+  - rm -rf ~/gh-push/*
+  - ls ~/gh-push/
+  - cp ~/build/timBrockman/static-scratch/dist/* ~/gh-push/
+  - current_time=$(date "+%Y.%m.%d-%H.%M.%S")
+  - git add -A .
+  - git commit -m "Travis updated this at $current_time"
+  - git remote set-url origin "git@github.com:timBrockman/static-scratch.git"
+  - git push origin gh-pages
+
+notifications:
+  email: false

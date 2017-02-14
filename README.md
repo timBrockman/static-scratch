@@ -4,7 +4,7 @@ This is a quick project to experiment with non-jekyll GitHub static site builds.
 
   - gulp
   - handlebars
-  - chai (testing)
+  - mocha -> chai (testing)
   - bash (deploys to gh-pages)
   - travis-ci (builds, tests, on success deploys to gh-pages)
 
