@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "simple":"echo $RANDOM >> ./src/index.html && rm -rf ./dist/* && cp ./src/index.html ./dist/"
+    "simple":"echo $(date \"+%Y.%m.%d-%H.%M.%S\") >> ./src/index.html && rm -rf ./dist/* && cp ./src/index.html ./dist/"
   },
   "repository": {
     "type": "git",
