@@ -4,6 +4,7 @@ node_js:
 
 before_install:
   - echo ${deploy_key} >> ~/.ssh/deploy_key
+  - chmod u=rw,og= ~/.ssh/deploy_key
   - echo "Host github.com" >> ~/.ssh/config
   - echo "  IdentityFile ~/.ssh/deploy_key" >> ~/.ssh/config
   - git --version
