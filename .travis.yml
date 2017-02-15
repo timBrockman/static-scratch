@@ -2,6 +2,30 @@ language: node_js
 node_js:
 - node
 
+before_install:
+  - echo ${deploy_key} >> ~/.ssh/deploy_key
+  - echo "Host github.com" >> ~/.ssh/config
+  - echo "  IdentityFile ~/.ssh/deploy_key" >> ~/.ssh/config
+  - git --version
+  - git remote set-url origin "git@github.com:${repo}"
+  - git config --global user.email "${commit_author_email}"
+  - git config --global user.name "Travis-CI"
+
+script:
+  - npm run simple
+
+after_success:
+  - mkdir ~/gh-push
+  - git clone https://github.com/${repo}.git ~/gh-push
+  - cd ~/gh-push
+  - git checkout gh-pages
+  - rm -rf ~/gh-push/*
+  - cp ~/build/${repo}/${dist_dir}/* ~/gh-push/
+  - current_time=$(date "+%Y.%m.%d-%H.%M.%S")
+  - git add -A .
+  - git commit -m "Travis updated this at $current_time"
+  - git remote set-url origin "git@github.com:${repo}.git"
+  - git push origin gh-pages
 
 notifications:
   email: false
