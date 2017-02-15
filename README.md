@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/timBrockman/static-scratch.svg?branch=master)](https://travis-ci.org/timBrockman/static-scratch)
 
-This is a quick project to experiment with non-jekyll GitHub static site builds.
+This is a quick project to experiment with non-jekyll GitHub static site builds. 
+The goal end game is to create something that lets you edit or add content, issue a PR, and let Travis build, test, and deploy to gh-pages.
 
   - gulp
   - handlebars
@@ -20,7 +21,4 @@ This is a quick project to experiment with non-jekyll GitHub static site builds.
   - write simple test
   - create simple hbs template
   - create simple md file
-
-## next
-hbs templates
-gulp build
+  - gulp hbs build
