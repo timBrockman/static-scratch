@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "simple":"echo $(date \"+%Y.%m.%d-%H.%M.%S\") >> ./src/index.html && rm -rf ./dist/* && cp ./src/index.html ./dist/"
+    "simple": "echo $(date \"+%Y.%m.%d-%H.%M.%S\") >> ./src/index.html && rm -rf ./dist/* && cp ./src/index.html ./dist/",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,8 @@
     "mocha": "^3.2.0",
     "run-sequence": "^1.2.2",
     "through2": "^2.0.3",
-    "tinyliquid": "^0.2.34"
-  }
+    "tinyliquid": "^0.2.34",
+    "snyk": "^1.25.0"
+  },
+  "snyk": true
 }
