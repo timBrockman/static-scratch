@@ -15,11 +15,15 @@ script:
   - npm run simple
 
 after_success:
+  - cat ~/build/${repo}/${dist_dir}/index.html
   - mkdir ~/gh-push
   - git clone https://github.com/${repo}.git ~/gh-push
   - cd ~/gh-push
+  - ls
   - git checkout gh-pages
+  - ls
   - rm -rf ~/gh-push/*
+  - ls
   - cp ~/build/${repo}/${dist_dir}/* ~/gh-push/
   - current_time=$(date "+%Y.%m.%d-%H.%M.%S")
   - git add -A .
