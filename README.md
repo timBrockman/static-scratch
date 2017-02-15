@@ -1,20 +1,25 @@
 # Static Scratch 
 
+[![Build Status](https://travis-ci.org/timBrockman/static-scratch.svg?branch=master)](https://travis-ci.org/timBrockman/static-scratch)
+
 This is a quick project to experiment with non-jekyll GitHub static site builds.
 
   - gulp
   - handlebars
   - mocha -> chai (testing)
-  - bash (deploys to gh-pages)
+  - travis (deploys to gh-pages)
   - travis-ci (builds, tests, on success deploys to gh-pages)
 
 ## refactoring (done)
   - simple build (cp random index.html)
   - deploy to GitHub process works
+  - refine travis-ci After_success deploy to use travis variables for config
+  
 
 ## todo
-  - refine travis-ci After_success deploy to bash script
-  - consider good way to pass in env variables for future yo
+  - write simple test
+  - create simple hbs template
+  - create simple md file
 
 ## next
 hbs templates
