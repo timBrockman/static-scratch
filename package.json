@@ -41,7 +41,6 @@
     "snyk": "^1.25.0",
     "through2": "^2.0.3",
     "vinyl": "^2.0.1",
-    "wdio-mocha-framework": "^0.5.8",
     "webdriverio": "^4.6.2"
   }
 }
