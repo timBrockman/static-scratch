@@ -22,25 +22,15 @@
   "dependencies": {},
   "snyk": true,
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-data": "^1.2.1",
     "gulp-front-matter": "^1.3.0",
     "gulp-marked": "^1.0.0",
     "gulp-wrap": "^0.13.0",
-    "karma": "^1.4.1",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-mocha": "^1.3.0",
-    "karma-sinon-chai": "^1.2.4",
-    "mocha": "^3.2.0",
     "run-sequence": "^1.2.2",
-    "sinon": "^1.17.7",
-    "sinon-chai": "^2.8.0",
     "snyk": "^1.25.0",
     "through2": "^2.0.3",
-    "vinyl": "^2.0.1",
-    "webdriverio": "^4.6.2"
+    "vinyl": "^2.0.1"
   }
 }
