@@ -38,6 +38,7 @@
     "run-sequence": "^1.2.2",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
+    "snyk": "^1.25.0",
     "through2": "^2.0.3",
     "vinyl": "^2.0.1",
     "wdio-mocha-framework": "^0.5.8",
