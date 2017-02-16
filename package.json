@@ -42,6 +42,7 @@
     "through2": "^2.0.3",
     "vinyl": "^2.0.1",
     "wdio-mocha-framework": "^0.5.8",
+    "wdio-sync": "^0.6.10",
     "webdriverio": "^4.6.2"
   }
 }
