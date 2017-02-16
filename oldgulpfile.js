@@ -82,7 +82,7 @@ gulp.task('clean', ()=>{
 });
 //catalog
 // creates indexes by tag and category and attaches to site object
-gulp.task('catalog', ()+>{
+gulp.task('catalog', ()=>{
   return gulp.src('./src/content/*.md')
     .pipe(frontMatter({property:'page', remove:false}))
     .pipe(addUrl(site));
